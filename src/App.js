@@ -17,18 +17,21 @@ class App extends Component {
       ]
     }
   }
+  addTodo(){
+    console.log('我得添加一个 todo 了')
+  }
   render() {
-    let todos = this.state.todoList.map((item) => {
+    let todos = this.state.todoList.map((item,index) => {
       return (
-      <li>
-        <TodoItem todo={item} />  
+      <li key={index}>
+        <TodoItem  todo={item} />  
       </li>)
     })
     return (
       <div className="App">
         <h1>待办事项</h1>
         <div className="App-header">
-          <TodoInput content={this.state.newTodo} />
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
         </div>
         <ol>
           {todos}
