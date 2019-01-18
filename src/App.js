@@ -30,6 +30,13 @@ export default class App extends Component {
       todoList: this.state.todoList
     })
   }
+  changeTitle = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      newTodo: event.target.value,
+      todoList: this.state.todoList
+    })
+  }
   render() {
     let todos = this.state.todoList.map((item, index) => {
       return (
@@ -41,7 +48,7 @@ export default class App extends Component {
       <div className="App">
         <h1>待办事项</h1>
         <div className="App-header">
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} />
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} onChange={this.changeTitle} />
         </div>
         <ol>
           {todos}
