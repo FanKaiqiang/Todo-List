@@ -22,7 +22,7 @@ export default class App extends Component {
     this.state.todoList.push({
       id: this.idMaker(),
       title: event.target.value,
-      status: null,
+      complete: false,
       deleted: false
     })
     this.setState({
@@ -31,24 +31,29 @@ export default class App extends Component {
     })
   }
   changeTitle = (event) => {
-    console.log(event.target.value)
     this.setState({
       newTodo: event.target.value,
       todoList: this.state.todoList
     })
   }
+  toggle = (e, todo) => {
+    todo.complete = !todo.complete
+    this.setState(this.state)
+  }
   render() {
     let todos = this.state.todoList.map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} />
+          <TodoItem todo={item} onToggle={this.toggle}/>
         </li>)
     })
     return (
       <div className="App">
         <h1>待办事项</h1>
         <div className="App-header">
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} onChange={this.changeTitle} />
+          <TodoInput content={this.state.newTodo}
+            onSubmit={this.addTodo}
+            onChange={this.changeTitle} />
         </div>
         <ol>
           {todos}
