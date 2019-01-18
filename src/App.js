@@ -5,33 +5,43 @@ import TodoInput from './TodoInput';
 import TodoItem from './TodoItem'
 import 'normalize.css'
 
-class App extends Component {
+
+export default class App extends Component {
   constructor(props) {
     super(props)
+    this.id = 0
     this.state = {
       newTodo: 'test',
-      todoList: [
-        { id: 1, title: '第一条待办事项' },
-        { id: 2, title: '第二条待办事项' },
-        { id: 3, title: '第三条待办事项' },
-      ]
+      todoList: []
     }
   }
-  addTodo(){
-    console.log('我得添加一个 todo 了')
+  idMaker() {
+    return this.id++
+  }
+  addTodo = (event) => {//传递给input的方法，event为input元素
+    this.state.todoList.push({
+      id: this.idMaker(),
+      title: event.target.value,
+      status: null,
+      deleted: false
+    })
+    this.setState({
+      newTodo: '',
+      todoList: this.state.todoList
+    })
   }
   render() {
-    let todos = this.state.todoList.map((item,index) => {
+    let todos = this.state.todoList.map((item, index) => {
       return (
-      <li key={index}>
-        <TodoItem  todo={item} />  
-      </li>)
+        <li key={index}>
+          <TodoItem todo={item} />
+        </li>)
     })
     return (
       <div className="App">
         <h1>待办事项</h1>
         <div className="App-header">
-          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo}/>
+          <TodoInput content={this.state.newTodo} onSubmit={this.addTodo} />
         </div>
         <ol>
           {todos}
@@ -42,4 +52,3 @@ class App extends Component {
   }
 }
 
-export default App;
