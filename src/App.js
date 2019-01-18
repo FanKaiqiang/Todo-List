@@ -36,15 +36,19 @@ export default class App extends Component {
       todoList: this.state.todoList
     })
   }
-  toggle = (e, todo) => {
+  toggle = (todo) => {
     todo.complete = !todo.complete
     this.setState(this.state)
   }
+  delete = (todo) => {
+    todo.deleted = true
+    this.setState(this.state)
+  }
   render() {
-    let todos = this.state.todoList.map((item, index) => {
+    let todos = this.state.todoList.filter(item => !item.deleted).map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} onToggle={this.toggle}/>
+          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete.bind(this)} />
         </li>)
     })
     return (
