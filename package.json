@@ -24,6 +24,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "normalize.css": "^8.0.1"
   }
 }
