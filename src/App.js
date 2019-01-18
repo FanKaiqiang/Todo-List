@@ -21,7 +21,7 @@ class App extends Component {
     let todos = this.state.todoList.map((item) => {
       return (
       <li>
-        <TodoItem tode={item} />  
+        <TodoItem todo={item} />  
       </li>)
     })
     return (
