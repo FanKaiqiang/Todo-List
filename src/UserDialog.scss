@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: hsla(0,0%,0%,0.40);
+  background: hsla(0, 0%, 0%, 0.4);
   > .UserDialog {
     border: 1px solid;
     border-radius: 4px;
@@ -35,6 +35,18 @@
         }
         > .row.actions {
           padding-left: 4em;
+          display: flex;
+          align-items: center;
+          > button {
+            margin-right: 0.5em;
+            font: inherit;
+            padding: 0.2em;
+          }
+          > span{
+            color:blue;
+            text-decoration: underline;
+            cursor: pointer;
+          }
         }
       }
     }

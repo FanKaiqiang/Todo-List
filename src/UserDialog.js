@@ -105,6 +105,7 @@ export default class UserDialog extends Component {
                   </div>
                   <div className="row actions">
                     <button type="submit">登录</button>
+                    <span>忘记密码了？</span>
                   </div>
                 </form>
               )
