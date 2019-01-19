@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
+import {getCurrentUser} from './leanCloud'
 import './App.scss'
 
 export default class App extends Component {
@@ -9,7 +10,7 @@ export default class App extends Component {
     super(props)
     this.id = 0
     this.state = {
-      user: {},
+      user: getCurrentUser() || {},
       newTodo: 'test',
       todoList: []
     }

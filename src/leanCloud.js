@@ -33,3 +33,11 @@ export function signUp(username, password, successFn, errorFn){//leancloud的用
   })
 }
 
+export function getCurrentUser(){
+  let user = AV.User.current()
+  if(user){
+    return getUserFromAVUser(user)
+  }else{
+    return null
+  }
+}
