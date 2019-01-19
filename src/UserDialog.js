@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {signUp} from './leanCloud'
+import {signUp,signIn} from './leanCloud'
 import './UserDialog.scss'
 
 export default class UserDialog extends Component {
@@ -34,7 +34,15 @@ export default class UserDialog extends Component {
     signUp(username,password,success,error)
   }
   signIn = (e) => {
-
+    e.preventDefault()
+    let {username,password} = this.state.formData
+    let success = (user) =>{
+      this.props.stateUpdate.call(null, user)
+    }
+    let error = (error) =>{
+      console.log(error)
+    }
+    signIn(username,password,success,error)
   }
   changeFormData = (e) => {
     let stateCopy = JSON.parse(JSON.stringify(this.state))

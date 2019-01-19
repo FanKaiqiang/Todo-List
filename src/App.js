@@ -40,12 +40,12 @@ export default class App extends Component {
     })
   }
 
-  toggle = (todo) => {
+  toggle = (todo) => {//勾选操作
     todo.complete = !todo.complete
     this.setState(this.state)
   }
 
-  delete = (todo) => {
+  delete = (todo) => {//删除操作
     todo.deleted = true
     this.setState(this.state)
   }
@@ -57,7 +57,7 @@ export default class App extends Component {
     })
   }
 
-  signOut = () =>{
+  signOut = () =>{//调用登出API，并重置state
     signOut()
     this.stateUpdate({})
   }
