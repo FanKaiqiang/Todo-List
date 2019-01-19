@@ -17,36 +17,43 @@
     background: white;
     border: 1px solid #aaa;
     box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
-    > nav:first-child {
-      padding: 1em;
-      > input[type="radio"]:not(:first-child) {
-        margin-left: 2em;
+    > .signInOrSignUp {
+      > nav:first-child {
+        padding: 1em;
+        > input[type="radio"]:not(:first-child) {
+          margin-left: 2em;
+        }
+      }
+      > .panes {
+        padding: 0 1em 1em;
       }
     }
-    > .panes {
-      padding: 0 1em 1em;
-      > form {
-        > .row {
-          display: flex;
-          padding: 0.3em 0;
-          > label:first-child {
-            width: 4em;
-          }
+    .forgotPassword {
+      > h3 {
+        margin: 10px;
+      }
+    }
+    form {
+      > .row {
+        display: flex;
+        padding: 0.3em 0;
+        > label:first-child {
+          width: 4em;
         }
-        > .row.actions {
-          padding-left: 4em;
-          display: flex;
-          align-items: center;
-          > button {
-            margin-right: 0.5em;
-            font: inherit;
-            padding: 0.2em;
-          }
-          > span{
-            color:blue;
-            text-decoration: underline;
-            cursor: pointer;
-          }
+      }
+      > .row.actions {
+        padding-left: 4em;
+        display: flex;
+        align-items: center;
+        > button {
+          margin-right: 0.5em;
+          font: inherit;
+          padding: 0.2em;
+        }
+        > span {
+          color: blue;
+          text-decoration: underline;
+          cursor: pointer;
         }
       }
     }

@@ -17,7 +17,7 @@ function getUserFromAVUser(AVUser){
 
 export default AV
 
-export function signUp(username, password, successFn, errorFn){//leancloud的用户注册API
+export function signUp(username, password,email, successFn, errorFn){//leancloud的用户注册API
    // 新建 AVUser 对象实例
   var user = new AV.User()
   // 设置用户名
@@ -25,6 +25,7 @@ export function signUp(username, password, successFn, errorFn){//leancloud的用
   // 设置密码
   user.setPassword(password)
   // 设置邮箱
+  user.setEmail(email);
   user.signUp().then(function (loginedUser) {//注册
     let user = getUserFromAVUser(loginedUser)
     successFn.call(null, user)//成功回调
