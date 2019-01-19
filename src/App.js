@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
-import './App.scss'
-import './reset.scss'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
-import 'normalize.css'
+import './App.scss'
 import * as localStore from './localStore'
+import AV from 'leancloud-storage'
 
+var APP_ID = 'pobPweP83M7Wt1hgTDn7kRPI-gzGzoHsz';
+var APP_KEY = 't0YfmdrLBhYvd9T0Dc89b8P8';
+
+AV.init({
+  appId: APP_ID,
+  appKey: APP_KEY
+});
+
+var TestObject = AV.Object.extend('TestObject');
+var testObject = new TestObject();
+testObject.save({
+  words: 'Hello World!'
+}).then(function(object) {
+  alert('LeanCloud Rocks!');
+})
 
 export default class App extends Component {
   constructor(props) {
@@ -13,7 +27,7 @@ export default class App extends Component {
     this.id = 0
     this.state = {
       newTodo: 'test',
-      todoList: localStore.load('todoList')||[]
+      todoList: localStore.load('todoList') || []
     }
   }
   idMaker() {
@@ -44,8 +58,8 @@ export default class App extends Component {
   delete = (todo) => {
     todo.deleted = true
     this.setState(this.state)
-  }  
-  componentDidUpdate(){
+  }
+  componentDidUpdate() {
     localStore.save('todoList', this.state.todoList)
   }
   render() {
