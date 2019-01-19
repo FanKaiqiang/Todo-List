@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
+import UserDialog from './UserDialog'
 import './App.scss'
 
 export default class App extends Component {
@@ -59,9 +60,9 @@ export default class App extends Component {
         <ol>
           {todos}
         </ol>
+        <UserDialog />
       </div>
     )
 
   }
 }
-
