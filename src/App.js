@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import {getCurrentUser} from './leanCloud'
+import { getCurrentUser, signOut } from './leanCloud'
 import './App.scss'
 
 export default class App extends Component {
@@ -50,11 +50,16 @@ export default class App extends Component {
     this.setState(this.state)
   }
 
-  onSignUp = (user) =>{
+  stateUpdate = (user) => {//登录更新state
     this.setState({
       ...this.state,
       user
     })
+  }
+
+  signOut = () =>{
+    signOut()
+    this.stateUpdate({})
   }
 
   render() {
@@ -66,7 +71,11 @@ export default class App extends Component {
     })
     return (
       <div className="App">
-        <h1>{this.state.user.username||'我'}的待办</h1>
+        <h1>
+          {this.state.user.username || '我'}的待办
+        
+        </h1>
+        {this.state.user.id ? <button onClick={this.signOut}>登出</button> : null}
         <div className="App-header">
           <TodoInput content={this.state.newTodo}
             onSubmit={this.addTodo}
@@ -75,7 +84,7 @@ export default class App extends Component {
         <ol>
           {todos}
         </ol>
-        {this.state.user.id ? null : <UserDialog  onSignUp={this.onSignUp}/>}
+        {this.state.user.id ? null : <UserDialog stateUpdate={this.stateUpdate} />}
       </div>
     )
 
