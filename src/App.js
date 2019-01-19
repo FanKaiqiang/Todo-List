@@ -74,7 +74,7 @@ export default class App extends Component {
         <ol>
           {todos}
         </ol>
-        <UserDialog  onSignUp={this.onSignUp}/>
+        {this.state.user.id ? null : <UserDialog  onSignUp={this.onSignUp}/>}
       </div>
     )
 
