@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import './App.scss';
+import React, { Component } from 'react'
+import './App.scss'
 import './reset.scss'
-import TodoInput from './TodoInput';
+import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import 'normalize.css'
+import * as localStore from './localStore'
 
 
 export default class App extends Component {
@@ -12,7 +13,7 @@ export default class App extends Component {
     this.id = 0
     this.state = {
       newTodo: 'test',
-      todoList: []
+      todoList: localStore.load('todoList')||[]
     }
   }
   idMaker() {
@@ -43,6 +44,9 @@ export default class App extends Component {
   delete = (todo) => {
     todo.deleted = true
     this.setState(this.state)
+  }  
+  componentDidUpdate(){
+    localStore.save('todoList', this.state.todoList)
   }
   render() {
     let todos = this.state.todoList.filter(item => !item.deleted).map((item, index) => {
