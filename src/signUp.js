@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class SignUp extends Component {
-  render() {
+export default function SignUp (props) {
+
     return (
-      <form className="signup" onSubmit={this.props.onSubmit}>
+      <form className="signup" onSubmit={props.onSubmit}>
         <div className="row">
           <label>用户名</label>
-          <input type="text" value={this.props.formData.username} onChange={this.props.onChange} />
+          <input type="text" value={props.formData.username} onChange={props.onChange} />
         </div>
         <div className="row">
           <label>密码</label>
-          <input type="password" value={this.props.formData.password} onChange={this.props.onChange} />
+          <input type="password" value={props.formData.password} onChange={props.onChange} />
         </div>
         <div className="row">
           <label>邮箱</label>
-          <input type="email" value={this.props.formData.email} onChange={this.props.onChange} />
+          <input type="email" value={props.formData.email} onChange={props.onChange} />
         </div>
         <div className="row actions">
           <button type="submit">注册</button>
@@ -22,5 +22,5 @@ export default class SignUp extends Component {
       </form>
     )
 
-  }
+
 }
