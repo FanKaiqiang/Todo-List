@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { signUp, signIn } from './leanCloud'
+import { signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 import './UserDialog.scss'
 
 export default class UserDialog extends Component {
@@ -88,8 +88,9 @@ export default class UserDialog extends Component {
     })
   }
 
-  resetPassword(){
-
+  resetPassword = (e) => {
+    e.preventDefault()
+    sendPasswordResetEmail(this.state.formData.email)
   }
 
   render() {

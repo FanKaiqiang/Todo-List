@@ -53,3 +53,11 @@ export function getCurrentUser(){//获取当前缓存的用户信息
 export function signOut(){//登出操作
   AV.User.logOut()
 }
+
+export function sendPasswordResetEmail(email, successFn, errorFn){
+  AV.User.requestPasswordReset(email).then(function (success) {
+    successFn.call(null,success) 
+  }, function (error) {
+    errorFn.call(null,error)
+  })
+}
