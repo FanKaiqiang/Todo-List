@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import SignUp from './signUp'
-import SignIn from './signIn'
 import ForgotPassword from './forgotPassword'
+import SignInOrSignUp from './signInOrSignUp'
 import { signUp, signIn, sendPasswordResetEmail } from './leanCloud'
 import './UserDialog.scss'
 
@@ -50,6 +49,9 @@ export default class UserDialog extends Component {
         case 202:
           alert('用户名已被占用')
           break
+        case 203:
+          alert('此邮箱已被占用')
+          break
         default:
           alert(error)
           break
@@ -97,36 +99,19 @@ export default class UserDialog extends Component {
   }
 
   render() {
-    let signInOrSignUp = (
-      <div className="signInOrSignUp">
-        <nav>
-          <label>
-            <input onChange={this.switch} type="radio" value="signUp" checked={this.state.selected === 'signUp'} />
-            注册
-          </label>
-          <label>
-            <input onChange={this.switch} type="radio" value="signIn" checked={this.state.selected === 'signIn'} />
-            登录
-          </label>
-        </nav>
-        <div className="panes">
-          {this.state.selected === 'signUp' ?
-            <SignUp formData={this.state.formData}
-              onSubmit={this.signUp}
-              onChange={this.changeFormData} />
-            : <SignIn formData={this.state.formData}
-              onChange={this.changeFormData}
-              onSubmit={this.signIn}
-              onForgotPassword={this.showForgotPassword} />}
-        </div>
-      </div>
-    )
-
     return (
       <div className="UserDialog-Wrapper">
         <div className="UserDialog">
-          {this.state.showSign ? signInOrSignUp
-            : <ForgotPassword formData={this.state.formData}
+          {this.state.showSign ?
+            <SignInOrSignUp state={this.state}
+              switch={this.switch}
+              onSignIn={this.signIn}
+              onSignUp={this.signUp}
+              onChange={this.changeFormData}
+              onForgotPassword={this.showForgotPassword}
+            />
+            :
+            <ForgotPassword formData={this.state.formData}
               onSubmit={this.resetPassword}
               onChange={this.changeFormData}
               onForgotPassword={this.showForgotPassword}
