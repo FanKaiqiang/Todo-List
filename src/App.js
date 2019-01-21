@@ -53,9 +53,15 @@ export default class App extends Component {
     })
   }
 
-  toggle = (todo) => {//勾选操作
-    todo.complete = !todo.complete
-    this.setState(this.state)
+  toggle = (todo) => {//勾选（更新）操作
+    let oldStatus = todo.status
+    todo.status = todo.status === 'completed' ? '' : 'completed'
+    TodoModel.update(todo, () => {
+      this.setState(this.state)
+    }, (error) => {
+      todo.status = oldStatus
+      this.setState(this.state)
+    })
   }
 
   delete = (todo) => {//删除操作
