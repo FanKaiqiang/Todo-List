@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import UserDialog from './UserDialog'
-import { getCurrentUser, signOut } from './leanCloud'
+import { getCurrentUser, signOut , TodoModel} from './leanCloud'
 import './App.scss'
 
 export default class App extends Component {
@@ -14,6 +14,14 @@ export default class App extends Component {
       newTodo: 'test',
       todoList: []
     }
+    let user = getCurrentUser()
+    if (user) {
+      TodoModel.getByUser(user, (todos) => {
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = todos
+        this.setState(stateCopy)
+      })
+    }
   }
 
   idMaker() {
@@ -21,15 +29,20 @@ export default class App extends Component {
   }
 
   addTodo = (event) => {//传递给input的方法，event为input元素
-    this.state.todoList.push({
-      id: this.idMaker(),
+    let newTodo = {
       title: event.target.value,
       complete: false,
       deleted: false
-    })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList
+    }
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id
+      this.state.todoList.push(newTodo)
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
+    }, (error) => {
+      console.log(error)
     })
   }
 
@@ -66,7 +79,7 @@ export default class App extends Component {
     let todos = this.state.todoList.filter(item => !item.deleted).map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete.bind(this)} />
+          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} />
         </li>)
     })
     return (
