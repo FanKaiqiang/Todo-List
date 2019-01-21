@@ -21,6 +21,7 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
   getByUser(user, successFn, errorFn) {
     // 文档见 https://leancloud.cn/docs/leanstorage_guide-js.html#批量操作
     let query = new AV.Query('Todo')
+    query.equalTo('deleted', false);
     query.find().then((response) => {
       let array = response.map((t) => {
         return { id: t.id, ...t.attributes }
@@ -30,8 +31,9 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
       errorFn && errorFn.call(null, error)
     })
   },
+
   create({ status, title, deleted }, successFn, errorFn) {
-    let Todo = AV.Object.extend('Todo') //建里todo数据库
+    let Todo = AV.Object.extend('Todo') //建立todo数据库
     let todo = new Todo()//新建todo对象
     todo.set('title', title)
     todo.set('status', status)
@@ -42,6 +44,7 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
     let acl = new AV.ACL()
     acl.setPublicReadAccess(false) // 注意这里是 false
     acl.setWriteAccess(AV.User.current(), true)
+    acl.setReadAccess(AV.User.current(), true)
 
     todo.setACL(acl);
 
@@ -53,7 +56,7 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
     });
 
   },
-  update({id, title, status, deleted}, successFn, errorFn){
+  update({ id, title, status, deleted }, successFn, errorFn) {
     // 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#更新对象
     let todo = AV.Object.createWithoutData('Todo', id)
     title !== undefined && todo.set('title', title)
@@ -73,14 +76,18 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
       successFn && successFn.call(null)
     }, (error) => errorFn && errorFn.call(null, error))
   },
+
   destroy(todoId, successFn, errorFn) {
     // 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
-    let todo = AV.Object.createWithoutData('Todo', todoId)//在todo表中删除为todoid的值
-    todo.destroy().then(function (response) {
-      successFn && successFn.call(null)
-    }, function (error) {
-      errorFn && errorFn.call(null, error)
-    });
+    // let todo = AV.Object.createWithoutData('Todo', todoId)//在todo表中删除为todoid的值
+    // todo.destroy().then(function (response) {
+    //   successFn && successFn.call(null)
+    // }, function (error) {
+    //   errorFn && errorFn.call(null, error)
+    // });
+    // 我们不应该删除数据，而是将数据标记为 deleted
+    console.log(1)
+    TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
   }
 }
 
