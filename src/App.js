@@ -59,8 +59,10 @@ export default class App extends Component {
   }
 
   delete = (todo) => {//删除操作
-    todo.deleted = true
-    this.setState(this.state)
+    TodoModel.destroy(todo.id, () => {
+      todo.deleted = true
+      this.setState(this.state)
+    })
   }
 
   stateUpdate = (user) => {//登录更新state

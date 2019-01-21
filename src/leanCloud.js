@@ -31,8 +31,8 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
     })
   },
   create({ status, title, deleted }, successFn, errorFn) {
-    let Todo = AV.Object.extend('Todo') //建立表，设置值
-    let todo = new Todo()
+    let Todo = AV.Object.extend('Todo') //建里todo数据库
+    let todo = new Todo()//新建todo对象
     todo.set('title', title)
     todo.set('status', status)
     todo.set('deleted', deleted)
@@ -56,8 +56,14 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
   update() {
 
   },
-  destroy() {
-
+  destroy(todoId, successFn, errorFn) {    
+    // 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
+    let todo = AV.Object.createWithoutData('Todo', todoId)//在todo表中删除为todoid的值
+    todo.destroy().then(function (response) {
+      successFn && successFn.call(null)
+    }, function (error) {
+      errorFn && errorFn.call(null, error)
+    });
   }
 }
 
