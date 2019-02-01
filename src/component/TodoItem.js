@@ -1,5 +1,5 @@
 import React from 'react';
-import './TodoItem.scss'
+import '../style/TodoItem.scss'
 
 function toggle  (props)  {
   props.onToggle(props.todo)

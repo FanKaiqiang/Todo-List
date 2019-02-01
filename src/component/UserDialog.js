@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ForgotPassword from './forgotPassword'
 import SignInOrSignUp from './signInOrSignUp'
-import { signUp, signIn, sendPasswordResetEmail } from './leanCloud'
-import './UserDialog.scss'
+import { signUp, signIn, sendPasswordResetEmail } from '../leanCloud'
+import '../style/UserDialog.scss'
 
 export default class UserDialog extends Component {
   constructor(props) {

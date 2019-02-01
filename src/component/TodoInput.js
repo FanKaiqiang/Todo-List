@@ -1,5 +1,5 @@
 import React from 'react'
-import './TodoInput.scss'
+import '../style/TodoInput.scss'
 
 
 function submit(props, e) {

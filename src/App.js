@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import TodoInput from './TodoInput'
-import TodoItem from './TodoItem'
-import UserDialog from './UserDialog'
+import TodoInput from './component/TodoInput'
+import TodoItem from './component/TodoItem'
+import UserDialog from './component/UserDialog'
 import { getCurrentUser, signOut , TodoModel} from './leanCloud'
-import './App.scss'
+import './style/App.scss'
 
 export default class App extends Component {
   constructor(props) {

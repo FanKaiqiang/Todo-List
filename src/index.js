@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
-import './reset.scss'
+import './style/index.scss'
+import './style/reset.scss'
 import 'normalize.css'
 import App from './App'
 
