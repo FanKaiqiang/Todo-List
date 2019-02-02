@@ -18,7 +18,7 @@ export default function SignUp(props) {
         <input type="email" value={props.formData.email} onChange={props.onChange} />
       </div>
       <button className="back" type="button" onClick={props.back}>上一步</button>
-      <button className="continue" type="submit">注册</button>
+      <button className="continue" type="submit">注册并登录</button>
     </form>
   )
 
