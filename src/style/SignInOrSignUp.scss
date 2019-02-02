@@ -1,0 +1,28 @@
+.signInOrSignUp {
+  position: relative;
+  height: 100%;
+  user-select: none;
+  > nav {
+    font-size: 12px;
+    padding: 1em;
+    position: relative;
+    > .closeWrapper {
+      position: absolute;
+      width: 48px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      right: 0;
+      &:hover {
+        background: #e81123;
+        color: #fff;
+      }
+    }
+  }
+
+  > .panes {
+    padding: 0 1em 1em;
+  }
+}
