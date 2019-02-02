@@ -1,0 +1,32 @@
+.welcome {
+  color: #2867CE;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  > svg {
+    font-size: 150px;
+  }
+  > .big {
+    font-size: 36px;
+    margin: 0.6em 0;
+  }
+  > .small {
+    font-size: 16px;
+  }
+  > button {
+    background: #fff;
+    border: none;
+    color: #4197f6;
+    height: 54px;
+    width: 190px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 2px;
+    margin-top: 1.6em;
+    &:hover {
+      border: 1px solid #4197f6;
+    }
+  }
+}
