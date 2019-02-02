@@ -9,34 +9,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: hsla(0, 0%, 0%, 0.4);
+  background: url(../img/login.jpg) center center no-repeat;
+  background-size:cover;
+
   > .UserDialog {
     border: 1px solid;
     border-radius: 4px;
-    min-width: 20em;
+    width: 450px;
+    height: 450px;
     background: white;
     border: 1px solid #aaa;
-    box-shadow: 0 0 1em hsla(0, 0%, 0%, 0.35);
-    > .signInOrSignUp {
-      > nav:first-child {
-        padding: 1em;
-        > input[type="radio"]:not(:first-child) {
-          margin-left: 2em;
-        }
-      }
-      > .panes {
-        padding: 0 1em 1em;
-      }
-    }
+    box-shadow: 0 0 3em hsla(0, 0%, 0%, 0.35);
+    position: fixed; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    transition: all 2s;
+
     .forgotPassword {
       > h3 {
-        padding: 1em;;
+        padding: 1em;
       }
-      > form{
+      > form {
         padding: 0 1em 1em;
       }
     }
     form {
+      > .ask {
+        font-size: 14px;
+        font-weight: bold;
+        margin: 1em 0;
+      }
       > .row {
         display: flex;
         padding: 0.3em 0;
@@ -49,9 +53,17 @@
         display: flex;
         align-items: center;
         > button {
-          margin-right: 0.5em;
-          font: inherit;
-          padding: 0.2em;
+          font-size: 14px;
+          width: 200px;
+          height: 32px;
+          background: #ccc;
+          border: none;
+          position: absolute;
+          right: 2em;
+          bottom: 2em;
+          &:hover {
+            border: 2px solid #7a7a7a;
+          }
         }
         > span {
           color: blue;
