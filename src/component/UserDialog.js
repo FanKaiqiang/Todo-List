@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ForgotPassword from './forgotPassword'
 import SignInOrSignUp from './signInOrSignUp'
+import Welcome from './welcome'
 import { signUp, signIn, sendPasswordResetEmail } from '../leanCloud'
 import '../style/UserDialog.scss'
 
@@ -8,7 +9,8 @@ export default class UserDialog extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selected: 'signUp',
+      selected: 'signIn',
+      show: false,
       showSign: true,
       formData: {
         username: '',
@@ -98,10 +100,18 @@ export default class UserDialog extends Component {
     sendPasswordResetEmail(this.state.formData.email)
   }
 
+  showLogin = (e) => {
+    this.setState({
+      ...this.state,
+      show: !this.state.show
+    })
+  }
+
   render() {
     return (
       <div className="UserDialog-Wrapper">
-        <div className="UserDialog">
+        <Welcome onClick={this.showLogin} />
+        {this.state.show ? <div className="UserDialog">
           {this.state.showSign ?
             <SignInOrSignUp state={this.state}
               switch={this.switch}
@@ -109,6 +119,7 @@ export default class UserDialog extends Component {
               onSignUp={this.signUp}
               onChange={this.changeFormData}
               onForgotPassword={this.showForgotPassword}
+              onClick={this.showLogin}
             />
             :
             <ForgotPassword formData={this.state.formData}
@@ -116,7 +127,7 @@ export default class UserDialog extends Component {
               onChange={this.changeFormData}
               onForgotPassword={this.showForgotPassword}
             />}
-        </div>
+        </div> : null}
       </div >
     )
   }
