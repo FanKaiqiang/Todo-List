@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import TodoInput from './component/TodoInput'
 import TodoItem from './component/TodoItem'
 import UserDialog from './component/UserDialog'
-import { getCurrentUser, signOut , TodoModel} from './leanCloud'
+import Aside from './component/aside'
+import { getCurrentUser, signOut, TodoModel } from './leanCloud'
 import './style/App.scss'
 
 export default class App extends Component {
@@ -78,7 +79,7 @@ export default class App extends Component {
     })
   }
 
-  signOut = () =>{//调用登出API，并重置state
+  signOut = () => {//调用登出API，并重置state
     signOut()
     this.stateUpdate({})
   }
@@ -92,11 +93,7 @@ export default class App extends Component {
     })
     return (
       <div className="App">
-        <h1>
-          {this.state.user.username || '我'}的待办
-        
-        </h1>
-        {this.state.user.id ? <button onClick={this.signOut}>登出</button> : null}
+        <Aside username={this.state.user.username}/>
         <div className="App-header">
           <TodoInput content={this.state.newTodo}
             onSubmit={this.addTodo}
