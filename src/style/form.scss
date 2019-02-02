@@ -1,0 +1,58 @@
+form {
+  > .title {
+    font-size: 24px;
+    padding: 1.2em 1em;
+  }
+  > .ask {
+    font-size: 14px;
+    padding: 1em 2em;
+    margin-bottom: 1em;
+  }
+  > .row {
+    display: flex;
+    align-items: center;
+    padding: 0.8em;
+    margin-left: 2em;
+    > label:first-child {
+      width: 4em;
+    }
+    > input {
+      height: 30px;
+      width: 250px;
+      padding-left: 0.5em;
+      border: 1px solid #999;
+      outline-color: #666;
+    }
+  }
+  > .resetPassword {
+    font-size: 14px;
+    padding: 1em 2em;
+    margin-top: 1em;
+    > span {
+      color: #2D8DDC;
+      cursor: pointer;
+      &:hover{
+        color:#667FAC;
+      }
+    }
+  }
+  > button {
+    font-size: 14px;
+    color: #fff;
+    width: 96px;
+    height: 32px;
+    background: #0078d7;
+    border: none;
+    position: absolute;
+    bottom: 3em;
+    &:hover {
+      border: 2px solid #004e8c;
+    }
+  }
+  > .continue {
+    right: 3em;
+  }
+  > .back {
+    left: 3em;
+  }
+}

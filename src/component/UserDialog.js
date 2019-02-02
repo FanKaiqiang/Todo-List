@@ -4,6 +4,7 @@ import SignInOrSignUp from './signInOrSignUp'
 import Welcome from './welcome'
 import { signUp, signIn, sendPasswordResetEmail } from '../leanCloud'
 import '../style/UserDialog.scss'
+import "../style/form.scss"
 
 export default class UserDialog extends Component {
   constructor(props) {
