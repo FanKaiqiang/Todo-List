@@ -10,23 +10,23 @@
   justify-content: center;
   align-items: center;
   background: url(../img/login.jpg) center center no-repeat;
-  background-size:cover;
+  background-size: cover;
 
   > .UserDialog {
     border: 1px solid;
     border-radius: 4px;
-    width: 450px;
+    width: 480px;
     height: 450px;
     background: white;
     border: 1px solid #aaa;
     box-shadow: 0 0 3em hsla(0, 0%, 0%, 0.35);
-    position: fixed; 
-    left: 0; 
-    right: 0; 
-    margin-left: auto; 
-    margin-right: auto; 
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     transition: all 2s;
-
+    animation: mymove 1s;
     .forgotPassword {
       > h3 {
         padding: 1em;
@@ -35,41 +35,12 @@
         padding: 0 1em 1em;
       }
     }
-    form {
-      > .ask {
-        font-size: 14px;
-        font-weight: bold;
-        margin: 1em 0;
+    @keyframes mymove {
+      from {
+        opacity: 0;
       }
-      > .row {
-        display: flex;
-        padding: 0.3em 0;
-        > label:first-child {
-          width: 4em;
-        }
-      }
-      > .row.actions {
-        padding-left: 4em;
-        display: flex;
-        align-items: center;
-        > button {
-          font-size: 14px;
-          width: 200px;
-          height: 32px;
-          background: #ccc;
-          border: none;
-          position: absolute;
-          right: 2em;
-          bottom: 2em;
-          &:hover {
-            border: 2px solid #7a7a7a;
-          }
-        }
-        > span {
-          color: blue;
-          text-decoration: underline;
-          cursor: pointer;
-        }
+      to {
+        opacity: 1;
       }
     }
   }
