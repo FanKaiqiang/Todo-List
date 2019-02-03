@@ -1,9 +1,61 @@
-.TodoItem{
-  padding: .5em;
+.TodoItem {
   display: flex;
   align-items: center;
-  >.title{
+  justify-content: center;
+  padding: 0 0.5em;
+
+  > .title {
     flex-grow: 1;
-    padding: 0 .5em;
+    padding: 1em;
+    border-bottom: 1px solid #e7e7e8;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 0.5em;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    position: relative;
+  }
+  input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d9d9d9;
+  }
+  input[type="checkbox"]:checked::before {
+    content: "\2713";
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid #0371bd;
+    color: #0371bd;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  > .iconWrapper {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > .icon {
+      font-size: 20px;
+      color: #444;
+      transition: all 0.2s;
+      &.important {
+        font-size: 24px;
+        color: #0371bd;
+      }
+    }
   }
 }
