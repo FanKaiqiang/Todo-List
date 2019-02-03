@@ -22,13 +22,15 @@ aside{
       margin-right: .2em;
     }
   }
-  >.item{
+  .item{
     display: flex;
     align-items: center;
     font-size: 14px;
     padding: .5em 1em;
     border-left: 3px inset transparent;
+    transition:all 0.5s;
     >.icon{
+      pointer-events: none;
       font-size: 2em;
       margin-right: .4em;
       color:#0371BD;
@@ -39,6 +41,9 @@ aside{
     }
     &:hover{
       background: #fafbfc;
+      &.signout{
+        background: #f5f6f7;
+      }
     }
   }
   >.line{

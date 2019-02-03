@@ -17,10 +17,12 @@
     transition:all 0.5s;
     > .icon {
       font-size: 3em;
+      pointer-events: none;
     }
     > .testWrapper {
       display: inline-block;
       margin: 0.5em;
+      pointer-events: none;
       > .bold {
         font-weight: bold;
       }
