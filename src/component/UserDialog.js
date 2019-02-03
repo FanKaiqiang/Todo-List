@@ -127,6 +127,7 @@ export default class UserDialog extends Component {
               onSubmit={this.resetPassword}
               onChange={this.changeFormData}
               onForgotPassword={this.showForgotPassword}
+              onClick={this.showLogin}
             />}
         </div> : null}
       </div >
