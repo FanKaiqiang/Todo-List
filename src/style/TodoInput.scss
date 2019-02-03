@@ -1,7 +1,22 @@
-.TodoInput{
-  width: 100%;
-  line-height: 1.8;
-  margin-bottom: 1em;
-  font-size: 16px;
-  padding: 0 .2em;
+.inputArea {
+  >.icon{
+    font-size: 18px;
+    margin-left: 1em;
+    color: #0371BD;
+  }
+  > input {
+    width: calc(100% - 63px);
+    font-size: 16px;
+    // margin-left: 1.3em;
+    padding: 1em;
+    border: none;
+    border-bottom: 1px solid #e7e7e8;
+    outline: none;
+    color: #8695fd;
+  }
+  >span{
+    color: #465DFC;
+    font-weight: bold;
+    font-size: 14px;
+  }
 }
