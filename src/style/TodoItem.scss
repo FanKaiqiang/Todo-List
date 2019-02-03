@@ -57,5 +57,12 @@
         color: #0371bd;
       }
     }
+    &.delete {
+      > .icon {
+        margin-left: .4em;
+        font-size: 22px;
+        color: #0371bd;
+      }
+    }
   }
 }
