@@ -21,7 +21,7 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
   getByUser(user, successFn, errorFn) {
     // 文档见 https://leancloud.cn/docs/leanstorage_guide-js.html#批量操作
     let query = new AV.Query('Todo')
-    query.equalTo('deleted', false);
+    // query.equalTo('deleted', false);
     query.find().then((response) => {
       let array = response.map((t) => {
         return { id: t.id, ...t.attributes }
@@ -86,7 +86,6 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
     //   errorFn && errorFn.call(null, error)
     // });
     // 我们不应该删除数据，而是将数据标记为 deleted
-    console.log(1)
     TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
   }
 }
@@ -131,7 +130,9 @@ export function signOut() {//登出操作
 export function sendPasswordResetEmail(email, successFn, errorFn) {
   AV.User.requestPasswordReset(email).then(function (success) {
     successFn.call(null, success)
+    alert('邮件已发送，请注意查收')
   }, function (error) {
     errorFn.call(null, error)
+    alert('邮件发送不成功')
   })
 }
