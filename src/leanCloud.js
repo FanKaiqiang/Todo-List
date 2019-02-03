@@ -79,14 +79,14 @@ export const TodoModel = {// 所有跟 Todo 相关的 LeanCloud 操作都放到�
 
   destroy(todoId, successFn, errorFn) {
     // 文档 https://leancloud.cn/docs/leanstorage_guide-js.html#删除对象
-    // let todo = AV.Object.createWithoutData('Todo', todoId)//在todo表中删除为todoid的值
-    // todo.destroy().then(function (response) {
-    //   successFn && successFn.call(null)
-    // }, function (error) {
-    //   errorFn && errorFn.call(null, error)
-    // });
+    let todo = AV.Object.createWithoutData('Todo', todoId)//在todo表中删除为todoid的值
+    todo.destroy().then(function (response) {
+      successFn && successFn.call(null)
+    }, function (error) {
+      errorFn && errorFn.call(null, error)
+    });
     // 我们不应该删除数据，而是将数据标记为 deleted
-    TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
+    // TodoModel.update({id: todoId, deleted: true}, successFn, errorFn)
   }
 }
 

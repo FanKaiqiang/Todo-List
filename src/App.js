@@ -76,11 +76,18 @@ export default class App extends Component {
     })
   }
 
-  delete = (todo) => {//删除操作
+  delete = (todo) => {//重要操作
     todo.deleted = !todo.deleted
     TodoModel.update(todo, () => {
       this.setState(this.state)
     })
+  }
+
+  trueDelete = (todo) => {//删除操作
+    if(window.confirm('是否要删除该项任务？')){
+      TodoModel.destroy(todo.id)
+    }
+    window.location.reload()
   }
 
   stateUpdate = (user) => {//登录更新state
@@ -116,19 +123,19 @@ export default class App extends Component {
     let doingTodos = this.state.todoList.filter(item => item.status === '').map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} />
+          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} trueDelete={this.trueDelete}/>
         </li>)
     })
     let impTodos = this.state.todoList.filter(item => item.deleted).map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} />
+          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} trueDelete={this.trueDelete}/>
         </li>)
     })
     let vanTodos = this.state.todoList.filter(item => item.status === 'completed').map((item, index) => {
       return (
         <li key={index}>
-          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} />
+          <TodoItem todo={item} onToggle={this.toggle} onDelete={this.delete} trueDelete={this.trueDelete}/>
         </li>)
     })
 
